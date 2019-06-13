@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'loveStore.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'loveStore',
+        'NAME': 'lovestore',
         'USER': 'user1',
         'PASSWORD': 'password',
         'HOST': 'localhost'
