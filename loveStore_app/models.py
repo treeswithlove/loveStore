@@ -25,12 +25,12 @@ class Shell(models.Model):
 
 class Order(models.Model):
     name = models.CharField(default = '', max_length = 30)
+    user = models.ForeignKey(User, on_delete = 'CASCADE', related_name = 'Item')
 
     def __str__(self):
         return self.name
     
 class Item(models.Model):
     shell = models.ForeignKey(Shell, on_delete = 'CASCADE', related_name = 'Item')
-    user = models.ForeignKey(User, on_delete = 'CASCADE', related_name = 'Item')
     quantity = models.IntegerField(default = '')
     order = models.ForeignKey(Order, on_delete = 'CASCADE', related_name = 'Item')
