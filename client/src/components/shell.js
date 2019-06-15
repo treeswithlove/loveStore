@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 
 //styled components or bootstrap or materialize
 class Shell extends Component {
@@ -16,7 +16,7 @@ class Shell extends Component {
         //     this.props.getShells()
         // }
         // getShells = () => {
-        axios.get(`/api/v1/shells/${this.props.match.params.id}/`)
+        axios.get(`/api/v1/shells/${this.props.match.params.sid}/`)
             .then(res => {
                 this.setState({ shell: res.data })
             })
