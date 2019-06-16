@@ -6,17 +6,18 @@ import { Redirect } from 'react-router'
 //styled components or bootstrap or materialize
 class Shell extends Component {
     state = {
-        shell: {id: ''},
+        shell: {},
         redirectToHome: false,
         redirectShellList: false,
         isEditFormDisplayed: false
     }
     //gets the shell
     componentDidMount = () => {
-
-        axios.get(`/api/v1/shells/${this.props.id}/`)
+        //     this.props.getShells()
+        // }
+        // getShells = () => {
+        axios.get(`/api/v1/shells/${this.props.match.params.id}/`)
             .then(res => {
-                console.log(res)
                 this.setState({ shell: res.data })
             })
     }
@@ -55,9 +56,7 @@ class Shell extends Component {
         if (this.state.redirectShellList){
             return (<Redirect to="/shells/" />)
         }
-
-       
-        const url = `/shells/${this.state.shell.id}/`
+        const url = `/shells/${this.props.id}/`
         return (
             //when map, maps through data this will be seen for each
             <div className="eachShell">
