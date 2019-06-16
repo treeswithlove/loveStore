@@ -33,6 +33,7 @@ class StripeView(View):
     def get(self, request, *args, **kwargs):
         shell = request.GET['shell']
         quantity = request.GET['quantity']
+        name = request.GET['name']
         result = stripe.Charge.list()
         createdOrder = stripe.Order.create(
             currency = 'usd',
@@ -52,15 +53,15 @@ class StripeView(View):
 
                 }
             ],
-             shipping={
-    "name":'Jenny Rosen',
-    "address":{
-      "line1":'1234 Main Street',
-      "city":'San Francisco',
-      "state":'CA',
-      "country":'US',
-      "postal_code":'94111'
-    },
+            shipping={
+                "name":name,
+                "address":{
+                    "line1":'1234 Main Street',
+                    "city":'San Francisco',
+                    "state":'CA',
+                    "country":'US',
+                    "postal_code":'94111'
+                },
   },
         )
         print(result)

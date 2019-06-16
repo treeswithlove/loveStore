@@ -62,7 +62,7 @@ class StuffList extends Component {
     }
 
     render() {
-        const shells = this.state.shells
+        // const shells = this.state.shells
         // const shellComponent = shells.map((shell, index) => {
         //     return (<ShellList
         //         key={index}
