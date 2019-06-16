@@ -16,7 +16,7 @@ class Shell extends Component {
 
         axios.get(`/api/v1/shells/${this.props.id}/`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({ shell: res.data })
             })
     }

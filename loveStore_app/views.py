@@ -37,15 +37,6 @@ class StripeView(View):
         result = stripe.Charge.list()
         createdOrder = stripe.Order.create(
             currency = 'usd',
-            # items= [
-            #     {
-            #         "description": "test"
-            #         # "amount": 3,
-            #         # "type": "sku",
-            #         # "parent":'sku_FFwXDIb7oLRG1B'
-
-            #     }
-            # ]
             items = [
                 {
                     "type": "sku",
@@ -65,5 +56,4 @@ class StripeView(View):
   },
         )
         print(result)
-        # json = {"test":"the", 'shell': shell, 'quantity': quantity}
         return JsonResponse(result, safe=False)

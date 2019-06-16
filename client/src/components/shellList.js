@@ -7,7 +7,9 @@ class ShellList extends Component {
     state = {
         shells: [],
         createShellForm: false,
-        newShell: {}
+        newShell: {
+
+        }
     }
 
     componentDidMount = () => {
@@ -29,7 +31,7 @@ class ShellList extends Component {
     }
     createShell = (e) => {
         e.preventDefault()
-        axios.post('/shells', this.state.newShell)
+        axios.post('/api/v1/shells/', this.state.newShell)
             .then(res => {
                 console.log(res.data)
                 const shellsList = [...this.state.shells]
@@ -40,14 +42,23 @@ class ShellList extends Component {
                     shells: shellsList
                 })
             })
+            .catch(err => {
+                console.log(err)
+                this.setState({ error: err.message })
+            })
     }
 
+
     render() {
+        if (this.state.error) {
+            return <div>{this.state.error}</div>
+        }
         const shells = this.state.shells
         const shellComponent = shells.map((shell, index) => {
             return (<Shell
                 key={index}
                 index={index}
+                shell={shell}
                 id={shell.id}
             />
 
@@ -56,29 +67,47 @@ class ShellList extends Component {
         return (
             <div>
                 <h1 className="title">Shell List</h1>
-                {/* <button onClick={this.toggleCreateForm}><h4>New Perspective</h4></button>
+                <button onClick={this.toggleCreateForm}><h4>New Shell</h4></button>
                 {
                     this.state.createShellForm
 
                         ? <form onSubmit={this.createShell}>
 
                             <div>
-                                <label>Perspective</label>
+                                <label htmlFor="name">Name</label>
                                 <input
-                                    className='shellCreateName'
-                                    type='text'
-                                    id='name'
-                                    name='name'
+                                    id="name"
+                                    type="text"
+                                    name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.newShell.name} />
+                                    value={this.state.newShell.name}
+                                />
                             </div>
                             <div>
-                                <label htmlFor="oldPerspective">Old Perspective</label>
-                                <textarea
-                                    id="oldPerspective"
-                                    name="oldPerspective"
+                                <label htmlFor="image_url">Image URL</label>
+                                <input
+                                    id="image_url"
+                                    name="image_url"
                                     onChange={this.handleChange}
-                                    value={this.state.newShell.oldPerspective}
+                                    value={this.state.newShell.image_url}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="description">Description</label>
+                                <input
+                                    id="description"
+                                    name="description"
+                                    onChange={this.handleChange}
+                                    value={this.state.newShell.description}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="price">Price</label>
+                                <input
+                                    id="price"
+                                    name="price"
+                                    onChange={this.handleChange}
+                                    value={this.state.newShell.price}
                                 />
                             </div>
 
@@ -88,7 +117,7 @@ class ShellList extends Component {
                         </form>
 
                         : null
-                } */}
+                }
                 <ul className="ulShells">
                     {shellComponent}
 
