@@ -62,7 +62,6 @@ class Order extends Component {
             //when map, maps through data this will be seen for each
             <div className="eachOrder">
                 <li><Link to={url}><h3>{this.state.order.name} </h3> </Link></li>
-                <li><h4>{this.props.order.user.first_name} {this.props.order.user.last_name}</h4> </li>
   
                 {
                     this.state.isEditFormDisplayed

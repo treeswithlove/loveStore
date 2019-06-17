@@ -4,7 +4,7 @@ import Shell from "./components/shellDetail";
 import ShellIndex from "./components/ShellIndex"
 import User from "./components/user";
 import UserIndex from "./components/UserIndex";
-import Order from "./components/OrderDetail";
+import Order from "./components/orderDetail";
 import OrderIndex from "./components/OrderIndex";
 import Home from "./components/home";
 import "./App.css";
