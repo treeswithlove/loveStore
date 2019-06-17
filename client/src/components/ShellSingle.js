@@ -13,7 +13,7 @@ class Shell extends Component {
         isEditFormDisplayed: false
     }
     //gets the shell
-    componentDidMount = () => {    
+    componentDidMount = () => {
         // axios.get(`/api/v1/shells/${this.props.id}/`)
         //     .then(res => {
         //         // console.log(res)
@@ -36,21 +36,12 @@ class Shell extends Component {
             })
     }
 
-      //deletes shell
-    deleteShell = (e) => {
-        e.preventDefault();
-        axios.delete(`/api/v1/shells/${this.props.shell.id}/`)
-            .then(() => {
-                this.setState({ redirectShellList: true })
-            })
-    }
-
     render() {
-        if (this.state.redirectShellList){
+        if (this.state.redirectShellList) {
             return (<Redirect to="/shells/" />)
         }
 
-       
+
         const url = `/shells/${this.props.shell.id}/`
         return (
             //when map, maps through data this will be seen for each
@@ -61,20 +52,18 @@ class Shell extends Component {
                 <li><h4>${this.props.shell.price}</h4> </li>
                 {
                     this.state.isEditFormDisplayed
-                        ? 
-                      <ShellUpdate
-                      shell={this.props.shell}
-                      toggleEditForm = {this.toggleEditForm}
-                      refreshShellList = {this.props.refreshShellList}
-                      />
+                        ?
+                        <ShellUpdate
+                            shell={this.props.shell}
+                            toggleEditForm={this.toggleEditForm}
+                            refreshShellList={this.props.refreshShellList}
+                        />
                         : null
 
-                }  
+                }
                 <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
-
-
-
-
+                </li>
+                <li> <button onClick={this.deleteShell}><h4>Delete</h4></button>
                 </li>
             </div>
 
