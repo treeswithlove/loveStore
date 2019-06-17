@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
 
 class UserCreate extends Component {
     state = {
@@ -71,15 +69,6 @@ class UserCreate extends Component {
                             name="email"
                             onChange={this.handleChange}
                             value={this.state.newUser.email}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="price">Price</label>
-                        <input
-                            id="price"
-                            name="price"
-                            onChange={this.handleChange}
-                            value={this.state.newUser.price}
                         />
                     </div>
                     <div>

@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
-import ShellList from "./components/shellList";
 import Shell from "./components/shellDetail";
+import ShellIndex from "./components/ShellIndex"
 import User from "./components/user";
-import UserList from "./components/userList";
-import Order from "./components/order";
-import OrderList from "./components/orderList";
+import UserIndex from "./components/UserIndex";
+import Order from "./components/OrderDetail";
+import OrderIndex from "./components/OrderIndex";
 import Home from "./components/home";
 import "./App.css";
 
@@ -27,17 +27,15 @@ class App extends Component {
  
                      <Switch>
                        <Route exact path="/" component={Home}/>
-                       <Route exact path="/users/" component={UserList}/>
+                       <Route exact path="/users/" component={UserIndex}/>
                        <Route exact path="/users/:id/" component={User}/>
-                       <Route exact path="/shells/" component={ShellList}/>
+                       <Route exact path="/shells/" component={ShellIndex}/>
                        <Route exact path="/shells/:id/" component={Shell}/>
-                       <Route exact path="/orders/" component={OrderList}/>
+                       <Route exact path="/orders/" component={OrderIndex}/> 
                        <Route exact path="/orders/:id/" component={Order}/>
                     
                      </Switch>
-                     <footer>
-                         <h4>here lies a footer</h4>
-                     </footer>
+                  
                 </div>
             </Router>
         );

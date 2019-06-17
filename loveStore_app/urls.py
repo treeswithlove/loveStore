@@ -7,8 +7,6 @@ router = routers.DefaultRouter()
 router.register('orders', views.OrderView)
 router.register('users', views.UserView)
 router.register('shells', views.ShellView)
-router.register('items', views.ItemView)
-router.register('shipping_address', views.Shipping_addressView)
 
 
 urlpatterns = [

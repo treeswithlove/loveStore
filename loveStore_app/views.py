@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .serializers import ShellSerializer, OrderSerializer, ItemSerializer, UserSerializer, Shipping_addressSerializer
-from .models import User, Shell, Item, Order, Shipping_address
+from .serializers import ShellSerializer, OrderSerializer, UserSerializer
+from .models import User, Shell, Order
 from django.views import View
 from django.http import JsonResponse
 import stripe
@@ -10,13 +10,6 @@ from decouple import config
 stripe.api_key = config("API_KEY")
 
 
-
-
-
-class Shipping_addressView(viewsets.ModelViewSet):
-    queryset = Shipping_address.objects.all()
-    serializer_class = Shipping_addressSerializer
-
 class ShellView(viewsets.ModelViewSet):
     queryset = Shell.objects.all()
     serializer_class = ShellSerializer
@@ -24,10 +17,6 @@ class ShellView(viewsets.ModelViewSet):
 class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-
-class ItemView(viewsets.ModelViewSet):
-    queryset = Item.objects.all()
-    serializer_class =ItemSerializer
 
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()

@@ -56,14 +56,11 @@ class Order extends Component {
         if (this.state.redirectOrderList){
             return (<Redirect to="/orders/" />)
         }
-        const url = `/orders/${this.props.oid}/`
+        
         return (
             //when map, maps through data this will be seen for each
             <div className="eachOrder">
-                <li><Link to={url}><h3>{this.state.order.name} </h3> </Link></li>
-                <li><img src={this.state.order.image_url} alt={this.props.name} /> </li>
-                <li><h4>{this.state.order.description} </h4> </li>
-                <li><h4>${this.state.order.price}</h4> </li>
+                <li><h3>{this.state.order.name} </h3></li>
                 {
                     this.state.isEditFormDisplayed
                         ? <form onSubmit={this.updateOrder}>

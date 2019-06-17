@@ -14,11 +14,7 @@ class User extends Component {
     }
     //gets the user
     componentDidMount = () => {
-        // axios.get(`/api/v1/users/${this.props.id}/`)
-        //     .then(res => {
-        //         // console.log(res)
-        //         this.setState({ user: res.data })
-        //     })
+    
     }
 
     toggleEditForm = () => {

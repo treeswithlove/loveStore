@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
+
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
+
 
 class UserUpdate extends Component {
     state = {
@@ -133,6 +133,7 @@ class UserUpdate extends Component {
                             value={this.state.currentUser.postal_code}
                         />
                     </div>
+                    
 
                     <div>
                         <input type='submit' value='submit' />

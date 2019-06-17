@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
+
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
+
 
 class ShellCreate extends Component {
     state = {
@@ -20,6 +20,8 @@ class ShellCreate extends Component {
     //Creates Shell
     createShell = (e) => {
         e.preventDefault()
+        let cloneShell = { ...this.state.newShell }
+        cloneShell.order = this.props.id
         axios.post('/api/v1/shells/', this.state.newShell)
             .then(res => {
                 console.log(res.data)
@@ -87,6 +89,15 @@ class ShellCreate extends Component {
                                 name="sku"
                                 onChange={this.handleChange}
                                 value={this.state.newShell.sku}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input
+                                id="quantity"
+                                name="quantity"
+                                onChange={this.handleChange}
+                                value={this.state.newShell.quantity}
                             />
                         </div>
 

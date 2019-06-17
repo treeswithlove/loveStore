@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
 
 class ShellUpdate extends Component {
     state = {
@@ -95,6 +93,15 @@ class ShellUpdate extends Component {
                             name="sku"
                             onChange={this.handleChange}
                             value={this.state.currentShell.sku}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="quantity">Quantity</label>
+                        <input
+                            id="quantity"
+                            name="quantity"
+                            onChange={this.handleChange}
+                            value={this.state.currentShell.quantity}
                         />
                     </div>
 

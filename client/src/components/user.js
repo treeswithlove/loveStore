@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
@@ -6,11 +6,7 @@ import { Redirect } from 'react-router'
 //styled components or bootstrap or materialize
 class User extends Component {
     state = {
-        user: {
-            first_name: '',
-            last_name: '',
-            email: ''
-        },
+        user: {},
         redirectToHome: false,
         redirectUserList: false,
         isEditFormDisplayed: false
@@ -22,6 +18,7 @@ class User extends Component {
                 this.setState({ user: res.data })
             })
     }
+    
     toggleEditForm = () => {
         this.setState((state) => {
             return { isEditFormDisplayed: !state.isEditFormDisplayed }
@@ -57,11 +54,11 @@ class User extends Component {
         if (this.state.redirectUserList){
             return (<Redirect to="/users/" />)
         }
-        const url = `/users/${this.props.id}/`
+   
         return (
             //when map, maps through data this will be seen for each
             <div className="eachUser">
-                <li><Link to={url}><h3>{this.state.user.first_name} {this.state.user.last_name}</h3> </Link></li>
+                <li><h3>{this.state.user.first_name} {this.state.user.last_name}</h3></li>
                 <li><img src={this.state.user.image_url} alt={this.props.name} /> </li>
                 <li><h4>{this.state.user.email} </h4> </li>
                 {
