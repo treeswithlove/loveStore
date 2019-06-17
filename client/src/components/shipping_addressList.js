@@ -1,45 +1,45 @@
 // import { Link } from "react-router-dom"
 import React, { Component } from 'react'
-import Item from './item'
+import Shipping_address from './shipping_address'
 import axios from 'axios'
 
-class ItemList extends Component {
+class Shipping_addressList extends Component {
     state = {
-        items: [],
-        createItemForm: false,
-        newItem: {
+        shipping_addresss: [],
+        createShipping_addressForm: false,
+        newShipping_address: {
 
         }
     }
 
     componentDidMount = () => {
-        axios.get('/api/v1/items/')
+        axios.get('/api/v1/shipping_addresss/')
             .then(res => {
-                this.setState({ items: res.data })
+                this.setState({ shipping_addresss: res.data })
             })
     }
     handleChange = (e) => {
-        let newItem = { ...this.state.newItem }
-        newItem[e.target.name] = e.target.value
+        let newShipping_address = { ...this.state.newShipping_address }
+        newShipping_address[e.target.name] = e.target.value
         console.log(e.target.name)
-        this.setState({ newItem })
+        this.setState({ newShipping_address })
     }
     toggleCreateForm = () => {
         this.setState((state) => {
-            return { createItemForm: !state.createItemForm }
+            return { createShipping_addressForm: !state.createShipping_addressForm }
         })
     }
-    createItem = (e) => {
+    createShipping_address = (e) => {
         e.preventDefault()
-        axios.post('/api/v1/items/', this.state.newItem)
+        axios.post('/api/v1/shipping_addresss/', this.state.newShipping_address)
             .then(res => {
                 console.log(res.data)
-                const itemsList = [...this.state.items]
-                itemsList.unshift(res.data)
+                const shipping_addresssList = [...this.state.shipping_addresss]
+                shipping_addresssList.unshift(res.data)
                 this.setState({
-                    newItem: {},
-                    createItemForm: false,
-                    items: itemsList
+                    newShipping_address: {},
+                    createShipping_addressForm: false,
+                    shipping_addresss: shipping_addresssList
                 })
             })
             .catch(err => {
@@ -53,25 +53,25 @@ class ItemList extends Component {
         if (this.state.error) {
             return <div>{this.state.error}</div>
         }
-        const items = this.state.items
-        const itemComponent = items.map((item, index) => {
-            return (<Item
+        const shipping_addresss = this.state.shipping_addresss
+        const shipping_addressComponent = shipping_addresss.map((shipping_address, index) => {
+            return (<Shipping_address
                 key={index}
                 index={index}
-                item={item}
-                id={item.id}
+                shipping_address={shipping_address}
+                id={shipping_address.id}
             />
 
             )
         })
         return (
             <div>
-                <h1 className="title">Item List</h1>
-                <button onClick={this.toggleCreateForm}><h4>New Item</h4></button>
+                <h1 className="title">Shipping_address List</h1>
+                <button onClick={this.toggleCreateForm}><h4>New Shipping_address</h4></button>
                 {
-                    this.state.createItemForm
+                    this.state.createShipping_addressForm
 
-                        ? <form onSubmit={this.createItem}>
+                        ? <form onSubmit={this.createShipping_address}>
 
                             <div>
                                 <label htmlFor="name">Name</label>
@@ -80,7 +80,7 @@ class ItemList extends Component {
                                     type="text"
                                     name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.name}
+                                    value={this.state.newShipping_address.name}
                                 />
                             </div>
                             <div>
@@ -89,7 +89,7 @@ class ItemList extends Component {
                                     id="image_url"
                                     name="image_url"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.image_url}
+                                    value={this.state.newShipping_address.image_url}
                                 />
                             </div>
                             <div>
@@ -98,7 +98,7 @@ class ItemList extends Component {
                                     id="description"
                                     name="description"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.description}
+                                    value={this.state.newShipping_address.description}
                                 />
                             </div>
                             <div>
@@ -107,7 +107,7 @@ class ItemList extends Component {
                                     id="price"
                                     name="price"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.price}
+                                    value={this.state.newShipping_address.price}
                                 />
                             </div>
 
@@ -118,8 +118,8 @@ class ItemList extends Component {
 
                         : null
                 }
-                <ul className="ulItems">
-                    {itemComponent}
+                <ul className="ulShipping_addresss">
+                    {shipping_addressComponent}
 
 
                 </ul>
@@ -129,4 +129,4 @@ class ItemList extends Component {
     }
 
 }
-export default ItemList;
+export default Shipping_addressList;

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .serializers import ShellSerializer, OrderSerializer, ItemSerializer, UserSerializer
-from .models import User, Shell, Item, Order
+from .serializers import ShellSerializer, OrderSerializer, ItemSerializer, UserSerializer, Shipping_addressSerializer
+from .models import User, Shell, Item, Order, Shipping_address
 from django.views import View
 from django.http import JsonResponse
 import stripe
@@ -12,6 +12,10 @@ stripe.api_key = config("API_KEY")
 
 
 
+
+class Shipping_addressView(viewsets.ModelViewSet):
+    queryset = Shipping_address.objects.all()
+    serializer_class = Shipping_addressSerializer
 
 class ShellView(viewsets.ModelViewSet):
     queryset = Shell.objects.all()
@@ -34,24 +38,33 @@ class StripeView(View):
         shell = request.GET['shell']
         quantity = request.GET['quantity']
         name = request.GET['name']
+        address = request.GET['address']
+        # line1 = request.GET['line1']
+        # city = request.GET['city']
+        # state = request.GET['state']
+        # country = request.GET['country']
+        # postal_code = request.GET['postal_code']
+        sku = request.GET['sku']
+        
         result = stripe.Charge.list()
         createdOrder = stripe.Order.create(
             currency = 'usd',
             items = [
                 {
                     "type": "sku",
-                    "parent": "sku_FFy2POOAuAq2iT"
+                    "parent": sku
 
                 }
             ],
             shipping={
                 "name":name,
-                "address":{
-                    "line1":'1234 Main Street',
-                    "city":'San Francisco',
-                    "state":'CA',
-                    "country":'US',
-                    "postal_code":'94111'
+                address:{
+                #     "line1": line1,
+                #     "city": city,
+                #     "state": state,
+                #     "country": country,
+                #     "postal_code": postal_code
+                # 
                 },
   },
         )

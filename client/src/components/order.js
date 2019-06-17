@@ -4,70 +4,69 @@ import axios from 'axios'
 import { Redirect } from 'react-router'
 
 //styled components or bootstrap or materialize
-class Shell extends Component {
+class Order extends Component {
     state = {
-        shell: {id: ''},
+        order: {id: ''},
         redirectToHome: false,
-        redirectShellList: false,
-        isEditFormDisplayed: false
+        redirectOrderList: false,
+        isEditFormDisplayed: false,
     }
-    //gets the shell
+    //gets the order
     componentDidMount = () => {
-        
-        axios.get(`/api/v1/shells/${this.props.id}/`)
+        axios.get(`/api/v1/orders/${this.props.id}/`)
             .then(res => {
-                // console.log(res)
-                this.setState({ shell: res.data })
+                console.log(res.data)
+                this.setState({ order: res.data })
             })
+      
     }
     toggleEditForm = () => {
         this.setState((state) => {
             return { isEditFormDisplayed: !state.isEditFormDisplayed }
         })
     }
-    //updates shell
-    updateShell = (e) => {
+    //updates order
+    updateOrder = (e) => {
         e.preventDefault()
-        console.log(this.state.shell)
-        axios.put(`/api/v1/shells/${this.state.shell.id}/`, this.state.shell)
+        console.log(this.state.order)
+        axios.put(`/api/v1/orders/${this.state.order.id}/`, this.state.order)
             .then(() => {
                 this.setState({ isEditFormDisplayed: false })
             })
     }
     //creates clone as placeholder
     handleChange = (e) => {
-        const newShell = { ...this.state.shell }
-        newShell[e.target.name] = e.target.value
+        const newOrder = { ...this.state.order }
+        newOrder[e.target.name] = e.target.value
         console.log(e.target.name)
-        this.setState({ shell: newShell })
+        this.setState({ order: newOrder })
     }
 
-    //deletes shell
-    deleteShell = (e) => {
+    //deletes order
+    deleteOrder = (e) => {
         e.preventDefault();
-        axios.delete(`/api/v1/shells/${this.state.shell.id}/`)
+        axios.delete(`/api/v1/orders/${this.state.order.id}/`)
             .then(() => {
-                this.setState({ redirectShellList: true })
+                this.setState({ redirectOrderList: true })
             })
     }
 
     render() {
-        if (this.state.redirectShellList){
-            return (<Redirect to="/shells/" />)
+        if (this.state.redirectOrderList){
+            return (<Redirect to="/orders/" />)
         }
 
        
-        const url = `/shells/${this.state.shell.id}/`
+        const url = `/orders/${this.state.order.id}/`
         return (
             //when map, maps through data this will be seen for each
-            <div className="eachShell">
-                <li><Link to={url}><h3>{this.state.shell.name} </h3> </Link></li>
-                <li><img src={this.state.shell.image_url} alt={this.props.name} /> </li>
-                <li><h4>{this.state.shell.description} </h4> </li>
-                <li><h4>${this.state.shell.price}</h4> </li>
+            <div className="eachOrder">
+                <li><Link to={url}><h3>{this.state.order.name} </h3> </Link></li>
+                <li><h4>{this.props.order.user.first_name} {this.props.order.user.last_name}</h4> </li>
+  
                 {
                     this.state.isEditFormDisplayed
-                        ? <form onSubmit={this.updateShell}>
+                        ? <form onSubmit={this.updateOrder}>
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <input
@@ -75,7 +74,7 @@ class Shell extends Component {
                                     type="text"
                                     name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.name}
+                                    value={this.state.order.name}
                                 />
                             </div>
                             <div>
@@ -84,7 +83,7 @@ class Shell extends Component {
                                     id="image_url"
                                     name="image_url"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.image_url}
+                                    value={this.state.order.image_url}
                                 />
                             </div>
                             <div>
@@ -93,7 +92,7 @@ class Shell extends Component {
                                     id="description"
                                     name="description"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.description}
+                                    value={this.state.order.description}
                                 />
                             </div>
                             <div>
@@ -102,11 +101,11 @@ class Shell extends Component {
                                     id="price"
                                     name="price"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.price}
+                                    value={this.state.order.price}
                                 />
                             </div>
                             <input type="submit" value="submit" />
-                            <input onClick={this.deleteShell} type='submit' value='delete' />
+                            <input onClick={this.deleteOrder} type='submit' value='delete' />
 
                         </form>
                         : null
@@ -123,4 +122,4 @@ class Shell extends Component {
     }
 
 }
-export default Shell;
+export default Order;

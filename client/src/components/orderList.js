@@ -1,45 +1,45 @@
 // import { Link } from "react-router-dom"
 import React, { Component } from 'react'
-import Item from './item'
+import Order from './order'
 import axios from 'axios'
 
-class ItemList extends Component {
+class OrderList extends Component {
     state = {
-        items: [],
-        createItemForm: false,
-        newItem: {
+        orders: [],
+        createOrderForm: false,
+        newOrder: {
 
         }
     }
 
     componentDidMount = () => {
-        axios.get('/api/v1/items/')
+        axios.get('/api/v1/orders/')
             .then(res => {
-                this.setState({ items: res.data })
+                this.setState({ orders: res.data })
             })
     }
     handleChange = (e) => {
-        let newItem = { ...this.state.newItem }
-        newItem[e.target.name] = e.target.value
+        let newOrder = { ...this.state.newOrder }
+        newOrder[e.target.name] = e.target.value
         console.log(e.target.name)
-        this.setState({ newItem })
+        this.setState({ newOrder })
     }
     toggleCreateForm = () => {
         this.setState((state) => {
-            return { createItemForm: !state.createItemForm }
+            return { createOrderForm: !state.createOrderForm }
         })
     }
-    createItem = (e) => {
+    createOrder = (e) => {
         e.preventDefault()
-        axios.post('/api/v1/items/', this.state.newItem)
+        axios.post('/api/v1/orders/', this.state.newOrder)
             .then(res => {
                 console.log(res.data)
-                const itemsList = [...this.state.items]
-                itemsList.unshift(res.data)
+                const ordersList = [...this.state.orders]
+                ordersList.unshift(res.data)
                 this.setState({
-                    newItem: {},
-                    createItemForm: false,
-                    items: itemsList
+                    newOrder: {},
+                    createOrderForm: false,
+                    orders: ordersList
                 })
             })
             .catch(err => {
@@ -53,25 +53,25 @@ class ItemList extends Component {
         if (this.state.error) {
             return <div>{this.state.error}</div>
         }
-        const items = this.state.items
-        const itemComponent = items.map((item, index) => {
-            return (<Item
+        const orders = this.state.orders
+        const orderComponent = orders.map((order, index) => {
+            return (<Order
                 key={index}
                 index={index}
-                item={item}
-                id={item.id}
+                order={order}
+                id={order.id}
             />
 
             )
         })
         return (
             <div>
-                <h1 className="title">Item List</h1>
-                <button onClick={this.toggleCreateForm}><h4>New Item</h4></button>
+                <h1 className="title">Order List</h1>
+                <button onClick={this.toggleCreateForm}><h4>New Order</h4></button>
                 {
-                    this.state.createItemForm
+                    this.state.createOrderForm
 
-                        ? <form onSubmit={this.createItem}>
+                        ? <form onSubmit={this.createOrder}>
 
                             <div>
                                 <label htmlFor="name">Name</label>
@@ -80,7 +80,7 @@ class ItemList extends Component {
                                     type="text"
                                     name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.name}
+                                    value={this.state.newOrder.name}
                                 />
                             </div>
                             <div>
@@ -89,7 +89,7 @@ class ItemList extends Component {
                                     id="image_url"
                                     name="image_url"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.image_url}
+                                    value={this.state.newOrder.image_url}
                                 />
                             </div>
                             <div>
@@ -98,7 +98,7 @@ class ItemList extends Component {
                                     id="description"
                                     name="description"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.description}
+                                    value={this.state.newOrder.description}
                                 />
                             </div>
                             <div>
@@ -107,7 +107,7 @@ class ItemList extends Component {
                                     id="price"
                                     name="price"
                                     onChange={this.handleChange}
-                                    value={this.state.newItem.price}
+                                    value={this.state.newOrder.price}
                                 />
                             </div>
 
@@ -118,8 +118,8 @@ class ItemList extends Component {
 
                         : null
                 }
-                <ul className="ulItems">
-                    {itemComponent}
+                <ul className="ulOrders">
+                    {orderComponent}
 
 
                 </ul>
@@ -129,4 +129,4 @@ class ItemList extends Component {
     }
 
 }
-export default ItemList;
+export default OrderList;

@@ -4,20 +4,21 @@ import axios from 'axios'
 import { Redirect } from 'react-router'
 
 //styled components or bootstrap or materialize
-class Shell extends Component {
+class Shipping_address extends Component {
     state = {
-        shell: {id: ''},
+        shipping_address: {},
         redirectToHome: false,
-        redirectShellList: false,
+        redirectShipping_addressList: false,
         isEditFormDisplayed: false
     }
-    //gets the shell
+    //gets the shipping_address
     componentDidMount = () => {
-        
-        axios.get(`/api/v1/shells/${this.props.id}/`)
+        //     this.props.getShipping_addresss()
+        // }
+        // getShipping_addresss = () => {
+        axios.get(`/api/v1/shipping_addresss/${this.props.match.params.id}/`)
             .then(res => {
-                // console.log(res)
-                this.setState({ shell: res.data })
+                this.setState({ shipping_address: res.data })
             })
     }
     toggleEditForm = () => {
@@ -25,49 +26,47 @@ class Shell extends Component {
             return { isEditFormDisplayed: !state.isEditFormDisplayed }
         })
     }
-    //updates shell
-    updateShell = (e) => {
+    //updates shipping_address
+    updateShipping_address = (e) => {
         e.preventDefault()
-        console.log(this.state.shell)
-        axios.put(`/api/v1/shells/${this.state.shell.id}/`, this.state.shell)
+        console.log(this.state.shipping_address)
+        axios.put(`/api/v1/shipping_addresss/${this.state.shipping_address.id}/`, this.state.shipping_address)
             .then(() => {
                 this.setState({ isEditFormDisplayed: false })
             })
     }
     //creates clone as placeholder
     handleChange = (e) => {
-        const newShell = { ...this.state.shell }
-        newShell[e.target.name] = e.target.value
+        const newShipping_address = { ...this.state.shipping_address }
+        newShipping_address[e.target.name] = e.target.value
         console.log(e.target.name)
-        this.setState({ shell: newShell })
+        this.setState({ shipping_address: newShipping_address })
     }
 
-    //deletes shell
-    deleteShell = (e) => {
+    //deletes shipping_address
+    deleteShipping_address = (e) => {
         e.preventDefault();
-        axios.delete(`/api/v1/shells/${this.state.shell.id}/`)
+        axios.delete(`/api/v1/shipping_addresss/${this.state.shipping_address.id}/`)
             .then(() => {
-                this.setState({ redirectShellList: true })
+                this.setState({ redirectShipping_addressList: true })
             })
     }
 
     render() {
-        if (this.state.redirectShellList){
-            return (<Redirect to="/shells/" />)
+        if (this.state.redirectShipping_addressList){
+            return (<Redirect to="/shipping_addresss/" />)
         }
-
-       
-        const url = `/shells/${this.state.shell.id}/`
+        const url = `/shipping_addresss/${this.props.id}/`
         return (
             //when map, maps through data this will be seen for each
-            <div className="eachShell">
-                <li><Link to={url}><h3>{this.state.shell.name} </h3> </Link></li>
-                <li><img src={this.state.shell.image_url} alt={this.props.name} /> </li>
-                <li><h4>{this.state.shell.description} </h4> </li>
-                <li><h4>${this.state.shell.price}</h4> </li>
+            <div className="eachShipping_address">
+                <li><Link to={url}><h3>{this.state.shipping_address.name} </h3> </Link></li>
+                <li><img src={this.state.shipping_address.image_url} alt={this.props.name} /> </li>
+                <li><h4>{this.state.shipping_address.description} </h4> </li>
+                <li><h4>${this.state.shipping_address.price}</h4> </li>
                 {
                     this.state.isEditFormDisplayed
-                        ? <form onSubmit={this.updateShell}>
+                        ? <form onSubmit={this.updateShipping_address}>
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <input
@@ -75,7 +74,7 @@ class Shell extends Component {
                                     type="text"
                                     name="name"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.name}
+                                    value={this.state.shipping_address.name}
                                 />
                             </div>
                             <div>
@@ -84,7 +83,7 @@ class Shell extends Component {
                                     id="image_url"
                                     name="image_url"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.image_url}
+                                    value={this.state.shipping_address.image_url}
                                 />
                             </div>
                             <div>
@@ -93,7 +92,7 @@ class Shell extends Component {
                                     id="description"
                                     name="description"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.description}
+                                    value={this.state.shipping_address.description}
                                 />
                             </div>
                             <div>
@@ -102,11 +101,11 @@ class Shell extends Component {
                                     id="price"
                                     name="price"
                                     onChange={this.handleChange}
-                                    value={this.state.shell.price}
+                                    value={this.state.shipping_address.price}
                                 />
                             </div>
                             <input type="submit" value="submit" />
-                            <input onClick={this.deleteShell} type='submit' value='delete' />
+                            <input onClick={this.deleteShipping_address} type='submit' value='delete' />
 
                         </form>
                         : null
@@ -123,4 +122,4 @@ class Shell extends Component {
     }
 
 }
-export default Shell;
+export default Shipping_address;
