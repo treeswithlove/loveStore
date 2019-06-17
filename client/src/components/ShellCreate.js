@@ -9,6 +9,7 @@ class ShellCreate extends Component {
         newShell: {}
     }
 
+    // 
     handleChange = (e) => {
         let newShell = { ...this.state.newShell }
         newShell[e.target.name] = e.target.value
@@ -16,6 +17,7 @@ class ShellCreate extends Component {
         this.setState({ newShell: newShell })
     }
 
+    //Creates Shell
     createShell = (e) => {
         e.preventDefault()
         axios.post('/api/v1/shells/', this.state.newShell)

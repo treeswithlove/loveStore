@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import ShellUpdate from "./ShellUpdate"
 
 //styled components or bootstrap or materialize
 class Shell extends Component {
@@ -21,35 +22,21 @@ class Shell extends Component {
     }
 
     toggleEditForm = () => {
-        // this.setState((state) => {
-        //     return { isEditFormDisplayed: !state.isEditFormDisplayed }
-        // })
-        this.setState({
-            newShell: {},
-            currentShell: {
-                name: this.props.newShell.name
-            }
+        this.setState((state) => {
+            return { isEditFormDisplayed: !state.isEditFormDisplayed }
         })
     }
 
-    //updates shell
-    updateShell = (e) => {
-        e.preventDefault()
-        console.log(this.props.shell)
-        axios.put(`/api/v1/shells/${this.props.shell.id}/`, this.props.shell)
+    //deletes shell
+    deleteShell = (e) => {
+        e.preventDefault();
+        axios.delete(`/api/v1/shells/${this.props.shell.id}/`)
             .then(() => {
-                this.setState({ isEditFormDisplayed: false })
+                this.setState({ redirectShellList: true })
             })
     }
-    // //creates clone as placeholder
-    // handleChange = (e) => {
-    //     const currentShell = { ...this.props.shell }
-    //     currentShell[e.target.name] = e.target.value
-    //     console.log(e.target.name)
-    //     this.setState({ shell: currentShell })
-    // }
 
-    //deletes shell
+      //deletes shell
     deleteShell = (e) => {
         e.preventDefault();
         axios.delete(`/api/v1/shells/${this.props.shell.id}/`)
@@ -74,51 +61,16 @@ class Shell extends Component {
                 <li><h4>${this.props.shell.price}</h4> </li>
                 {
                     this.state.isEditFormDisplayed
-                        ? <form onSubmit={this.updateShell}>
-                            <div>
-                                <label htmlFor="name">Name</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    name="name"
-                                    onChange={this.props.handleShellUpdate}
-                                    value={this.props.shell.name}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="image_url">Image URL</label>
-                                <input
-                                    id="image_url"
-                                    name="image_url"
-                                    onChange={this.props.handleShellUpdate}
-                                    value={this.props.shell.image_url}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="description">Description</label>
-                                <input
-                                    id="description"
-                                    name="description"
-                                    onChange={this.props.handleShellUpdate}
-                                    value={this.props.shell.description}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="price">Price</label>
-                                <input
-                                    id="price"
-                                    name="price"
-                                    onChange={this.props.handleShellUpdate}
-                                    value={this.props.shell.price}
-                                />
-                            </div>
-                            <input type="submit" value="submit" />
-                            <input onClick={this.deleteShell} type='submit' value='delete' />
-
-                        </form>
+                        ? 
+                      <ShellUpdate
+                      shell={this.props.shell}
+                      toggleEditForm = {this.toggleEditForm}
+                      refreshShellList = {this.props.refreshShellList}
+                      />
                         : null
 
-                }  <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
+                }  
+                <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
 
 
 

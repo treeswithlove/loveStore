@@ -12,10 +12,7 @@ class ShellIndex extends Component {
 
     }
     componentDidMount = () => {
-        axios.get('/api/v1/shells/')
-            .then(res => {
-                this.setState({ shells: res.data })
-            })
+       this.refreshShellList()
     }
 
     toggleCreateForm = () => {
@@ -24,10 +21,19 @@ class ShellIndex extends Component {
         })
     }
 
+    //updates list after creating new shell
     updateShellList = (newShell) => {
         const shells = [...this.state.shells]
         shells.unshift(newShell)
         this.setState({shells: shells})
+    }
+
+    //updates list after creating new shell
+    refreshShellList = () => {
+        axios.get('/api/v1/shells/')
+        .then(res => {
+            this.setState({ shells: res.data })
+        })
     }
 
     render() {
@@ -40,6 +46,7 @@ class ShellIndex extends Component {
                 key={index}
                 index={index}
                 shell={shell}
+                refreshShellList = {this.refreshShellList}
             />
             )
         })
@@ -54,6 +61,7 @@ class ShellIndex extends Component {
                         ? <ShellCreate 
                         toggleCreateForm={this.toggleCreateForm}
                         updateShellList={this.updateShellList}
+                        refreshShellList = {this.refreshShellList}
                         />
                         : null
                 }
