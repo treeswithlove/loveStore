@@ -7,6 +7,7 @@ import UserIndex from "./components/UserIndex";
 import Order from "./components/orderDetail";
 import OrderIndex from "./components/OrderIndex";
 import Home from "./components/home";
+import Content from "./components/IndexAll";
 import "./App.css";
 
 class App extends Component {
@@ -22,11 +23,13 @@ class App extends Component {
                             <div><Link to="/orders/">Order</Link></div>
                             <div><Link to="/users/">Users</Link></div>
                             <div><Link to="/">Home</Link></div>
+                            <div><Link to="/content/">Content</Link></div>
                         </nav>
                     </div>
  
                      <Switch>
                        <Route exact path="/" component={Home}/>
+                       <Route exact path="/content/" component={Content}/>
                        <Route exact path="/users/" component={UserIndex}/>
                        <Route exact path="/users/:id/" component={User}/>
                        <Route exact path="/shells/" component={ShellIndex}/>

@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom"
 import React, { Component } from 'react'
-import Shell from './shell'
+// import Shell from './shell'
 import ShellIndex from './ShellIndex'
 import OrderIndex from './OrderIndex'
 import UserIndex from './UserIndex'
@@ -8,20 +8,24 @@ import axios from 'axios'
 
 class ProductList extends Component {
     state = {
-       error:""
+       error:"",
+       pic: [],
+       weather: [],
+       temp: []
     }
     componentDidMount = () => {
-
+        this.weatherAPI();
     }
-
-    orderItem = () => {
-        axios.get(`/api/v1/shells/${this.state.item.shell}`)
-            .then(shell => {
-                console.log(shell)
-                const userName = 'test name'
-                axios.get(`/api/v1/stripe?quantity=${this.state.item.quantity}&shell=${shell.name}&name=${userName}`)
-            })
-        // axios.get(`/api/v1/stripe?quantity=${this.state.item.quantity}`)
+    
+    weatherAPI = () => {
+        axios.get(`https://fcc-weather-api.glitch.me/api/current?lat=33&lon=-84`)
+        .then(res => {
+        console.log(res.data['weather'])
+         let image = document.getElementById('pic').src = res.data['weather'][0]['icon']
+         let weather = document.getElementById('sky').innerHTML = res.data['weather'][0]['main']
+         let temp = document.getElementById('hot').innerHTML = res.data['main']['temp']
+         this.setState({pic: image, type: weather, temp: temp})
+        })
     }
 
     render() {
@@ -32,8 +36,10 @@ class ProductList extends Component {
 
         return (
             <div>
-                    {JSON.stringify(this.state)}
-                <button onClick={this.orderItem}>Order Item</button>
+                <img id="pic" src=""/>
+                <h1 id="sky"></h1>
+                <h1 id="hot"></h1>
+
                 <h1>Product List</h1>
                 <ShellIndex/>
                 <UserIndex/>

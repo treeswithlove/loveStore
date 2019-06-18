@@ -48,12 +48,12 @@ class StripeView(View):
             shipping={
                 "name":name,
                 address:{
-                #     "line1": line1,
-                #     "city": city,
-                #     "state": state,
-                #     "country": country,
-                #     "postal_code": postal_code
-                # 
+                    "line1": line1,
+                    "city": city,
+                    "state": state,
+                    "country": country,
+                    "postal_code": postal_code
+                
                 },
   },
         )
