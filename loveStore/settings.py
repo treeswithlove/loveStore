@@ -132,13 +132,13 @@ import django_heroku
 django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Add these two lines.
-REACT_APP_DIR = os.path.join(BASE_DIR, 'client')
+# REACT_APP_DIR = os.path.join(BASE_DIR, 'client')
 
-STATICFILES_DIRS = [
-  os.path.join(REACT_APP_DIR, 'build', 'static')
-]
+# STATICFILES_DIRS = [
+#   os.path.join(REACT_APP_DIR, 'build', 'static')
+# ]
 REST_FRAMEWORK = {  
   'DEFAULT_PERMISSION_CLASSES': [  
     'rest_framework.permissions.AllowAny'  

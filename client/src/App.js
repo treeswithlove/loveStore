@@ -32,7 +32,7 @@ class App extends Component {
                        <Route exact path="/shells/" component={ShellIndex}/>
                        <Route exact path="/shells/:id/" component={Shell}/>
                        <Route exact path="/orders/" component={OrderIndex}/> 
-                       <Route exact path="/orders/:id/" component={Order}/>
+                       <Route path="/orders/:id/" component={Order}/>
                     
                      </Switch>
                   

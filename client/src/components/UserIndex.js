@@ -12,7 +12,10 @@ class UserIndex extends Component {
 
     }
     componentDidMount = () => {
-       this.refreshUserList()
+        axios.get('/api/v1/users/')
+        .then(res => {
+            this.setState({ users: res.data })
+        })
     }
 
     toggleCreateForm = () => {
