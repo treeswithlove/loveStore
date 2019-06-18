@@ -47,6 +47,7 @@ class ShellIndex extends Component {
                 index={index}
                 shell={shell}
                 refreshShellList = {this.refreshShellList}
+                orderShell = {this.orderShell}
             />
             )
         })
@@ -67,6 +68,7 @@ class ShellIndex extends Component {
                 }
                 <div>
                     {shellComponents}
+
                 </div>
             </div>
 

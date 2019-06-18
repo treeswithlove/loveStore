@@ -46,6 +46,8 @@ class Shell extends Component {
                 <li><img src={this.props.shell.image_url} alt={this.props.name} /> </li>
                 <li><h4>{this.props.shell.description} </h4> </li>
                 <li><h4>${this.props.shell.price}</h4> </li>
+
+            
                 {
                     this.state.isEditFormDisplayed
                         ?

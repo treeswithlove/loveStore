@@ -9,7 +9,10 @@ class Shell extends Component {
         shell: {},
         redirectToHome: false,
         redirectShellList: false,
-        isEditFormDisplayed: false
+        isEditFormDisplayed: false,
+        confirmation:{},
+        result:{},
+        amount: {}
     }
     //gets the shell
     componentDidMount = () => {
@@ -52,6 +55,18 @@ class Shell extends Component {
             })
     }
 
+    orderShell = () => {
+        console.log(this.state.shell.sku)
+        axios.get(`/api/v1/stripe?shell=${this.state.shell.sku}&quantity=${this.state.shell.quantity}`)
+            .then((res)=> {
+                console.log(res.data)
+                let confirmation = document.getElementById('response').innerHTML = res.data.data[0].id
+                let amount = document.getElementById('amount').innerHTML = res.data.data[0].amount
+                let result = document.getElementById('response').innerHTML = res.data.data[0].id
+                this.setState({response: confirmation, result: result, amount: amount})
+            })
+    }
+
     render() {
         if (this.state.redirectShellList) {
             return (<Redirect to="/shells/" />)
@@ -64,6 +79,11 @@ class Shell extends Component {
                 <li><img src={this.state.shell.image_url} alt={this.props.name} /> </li>
                 <li><h4>{this.state.shell.description} </h4> </li>
                 <li><h4>${this.state.shell.price}</h4> </li>
+
+                <button onClick={this.orderShell}>Order Item</button>
+                <p><p id="response"> </p>
+                <p id="amount"> </p></p>
+
                 {
                     this.state.isEditFormDisplayed
                         ? <form onSubmit={this.updateShell}>
@@ -104,6 +124,24 @@ class Shell extends Component {
                                     value={this.state.shell.price}
                                 />
                             </div>
+                            <div>
+                            <label htmlFor="sku">SKU</label>
+                            <input
+                                id="sku"
+                                name="sku"
+                                onChange={this.handleChange}
+                                value={this.state.shell.sku}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input
+                                id="quantity"
+                                name="quantity"
+                                onChange={this.handleChange}
+                                value={this.state.shell.quantity}
+                            />
+                        </div>
                             <input type="submit" value="submit" />
                             <input onClick={this.deleteShell} type='submit' value='delete' />
 
