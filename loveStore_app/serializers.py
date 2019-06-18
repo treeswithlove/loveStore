@@ -11,7 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
  
-
     class Meta:
         model = Order
         fields = ('id', 'name')
@@ -21,4 +20,4 @@ class ShellSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Shell
-        fields = ('id', 'name', 'image_url', 'description', 'price', 'sku')
+        fields = ('id', 'name', 'image_url', 'description', 'price', 'sku', 'quantity')

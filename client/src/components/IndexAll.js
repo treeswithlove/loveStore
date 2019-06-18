@@ -6,7 +6,7 @@ import OrderIndex from './OrderIndex'
 import UserIndex from './UserIndex'
 import axios from 'axios'
 
-class ProductList extends Component {
+class Content extends Component {
     state = {
        error:"",
        pic: [],
@@ -36,17 +36,16 @@ class ProductList extends Component {
 
         return (
             <div>
+                <h4 id="sky"> </h4>
+                <h4 id="hot"> degrees</h4>
                 <img id="pic" src="" alt="weather for Latitude Longitude"/>
-                <h1 id="sky"> </h1>
-                <h1 id="hot"> </h1>
 
-                <h1>Product List</h1>
-                <ShellIndex/>
                 <UserIndex/>
                 <OrderIndex/>
+                <ShellIndex/>
             </div>
         )
     }
 
 }
-export default ProductList; 
+export default Content; 

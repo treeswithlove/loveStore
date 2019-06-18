@@ -11,5 +11,4 @@ router.register('shells', views.ShellView)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('stripe', views.StripeView.as_view(), name='stripe')
 ]
