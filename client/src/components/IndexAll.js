@@ -36,9 +36,9 @@ class ProductList extends Component {
 
         return (
             <div>
-                <img id="pic" src=""/>
-                <h1 id="sky"></h1>
-                <h1 id="hot"></h1>
+                <img id="pic" src="" alt="weather for Latitude Longitude"/>
+                <h1 id="sky"> </h1>
+                <h1 id="hot"> </h1>
 
                 <h1>Product List</h1>
                 <ShellIndex/>
