@@ -12,8 +12,8 @@ class UserIndex extends Component {
 
     }
     componentDidMount = () => {
-        axios.get('api/v1/users/')
-        .then(res => {
+        axios.get('/api/v1/users/')
+        .then((res) => {
             this.setState({ users: res.data })
         })
     }
