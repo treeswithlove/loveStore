@@ -20,5 +20,24 @@ nav {
   margin-right: 2rem;
   margin-top: 2rem;
 }
+.holdIndex{
+  display:grid;
+  grid-template-columns: 65% 35%;
 
+}
+.orderIndex{
+  display: grid;
+  grid-column: 2;
+  grid-row:1
+
+}
+.userIndex{
+  display: grid;
+  grid-row:2
+}
+.shellIndex{
+  display: grid;
+  grid-column: 1;
+  grid-row:1
+}
 

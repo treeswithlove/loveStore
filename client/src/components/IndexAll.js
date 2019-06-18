@@ -7,9 +7,9 @@ import UserIndex from './UserIndex'
 
 class IndexAll extends Component {
     state = {
-       error:"",
+        error: "",
     }
-  
+
 
     render() {
         if (this.state.error) {
@@ -18,10 +18,12 @@ class IndexAll extends Component {
 
 
         return (
-            <div>
-                <UserIndex/>
-                <OrderIndex/>
-                <ShellIndex/>
+            <div className="holdIndex">
+                <div>
+                    <OrderIndex />
+                    <UserIndex />
+                </div>
+                    <ShellIndex />
             </div>
         )
     }

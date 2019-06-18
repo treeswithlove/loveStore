@@ -54,7 +54,7 @@ class ShellIndex extends Component {
 
 
         return (
-            <div>
+            <div className="shellIndex">
                 <h1>Product List</h1>
                 <button onClick={this.toggleCreateForm}>Create New Product</button>
                 {

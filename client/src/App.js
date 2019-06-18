@@ -57,7 +57,9 @@ class App extends Component {
                         <Route path="/orders/:id/" component={Order} />
 
                     </Switch>
-
+                    <footer>
+                        
+                    </footer>
                 </div>
             </Router>
         );

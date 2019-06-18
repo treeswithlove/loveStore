@@ -53,7 +53,7 @@ class OrderIndex extends Component {
 
 
         return (
-            <div>
+            <div className="orderIndex">
                
                 <button onClick={this.toggleCreateForm}>Create New Order</button>
                 {

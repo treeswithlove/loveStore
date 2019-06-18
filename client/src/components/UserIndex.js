@@ -56,7 +56,7 @@ class UserIndex extends Component {
 
 
         return (
-            <div>
+            <div className="userIndex">
                 <h1>Members List</h1>
                 <button onClick={this.toggleCreateForm}>Become A Member</button>
                 {
