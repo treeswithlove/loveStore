@@ -9,7 +9,7 @@ class Home extends Component {
         return (
             //when map, maps through data this will be seen for each
             <div className="eachItem">
-                <h1>Home Biitch!</h1>
+                <h1>Home</h1>
             </div>
 
         )
