@@ -54,7 +54,7 @@ class OrderIndex extends Component {
 
         return (
             <div>
-                <h1>Order List</h1>
+               
                 <button onClick={this.toggleCreateForm}>Create New Order</button>
                 {
                     this.state.showCreateForm

@@ -41,7 +41,7 @@ class Order extends Component {
         return (
             //when map, maps through data this will be seen for each
             <div className="eachOrder">
-                <li><Link to={url}><h3>{this.props.order.name} </h3> </Link></li>
+                <li><Link to={url}><h1>{this.props.order.name} </h1> </Link></li>
                 
                 {
                     this.state.isEditFormDisplayed

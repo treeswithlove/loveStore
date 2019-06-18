@@ -57,8 +57,8 @@ class UserIndex extends Component {
 
         return (
             <div>
-                <h1>User List</h1>
-                <button onClick={this.toggleCreateForm}>Create New User</button>
+                <h1>Members List</h1>
+                <button onClick={this.toggleCreateForm}>Become A Member</button>
                 {
                     this.state.showCreateForm
                         ? <UserCreate 

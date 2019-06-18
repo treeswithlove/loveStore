@@ -42,7 +42,7 @@ class Shell extends Component {
             //when map, maps through data this will be seen for each
             <div className="eachShell">
                 <li><Link to={url}><h3>{this.props.shell.name} </h3> </Link></li>
-                <li><img src={this.props.shell.image_url} alt={this.props.name} /> </li>
+                <li><img className="shellImage" src={this.props.shell.image_url} alt={this.props.name} /> </li>
                 <li><h4>{this.props.shell.description} </h4> </li>
                 <li><h4>${this.props.shell.price}</h4> </li>
 
