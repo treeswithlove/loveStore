@@ -4,7 +4,7 @@ import Shell from "./components/shellDetail";
 import User from "./components/user";
 import Order from "./components/orderDetail";
 import Home from "./components/home";
-import Content from "./components/IndexAll";
+import IndexAll from "./components/IndexAll";
 import "./App.css";
 
 class App extends Component {
@@ -17,13 +17,13 @@ class App extends Component {
                         <h1>Love Shop</h1>
                         <nav>
                             <div><Link to="/">Home</Link></div>
-                            <div><Link to="/content/">Content</Link></div>
+                            <div><Link to="/content/">Products</Link></div>
                         </nav>
                     </div>
  
                      <Switch>
                        <Route exact path="/" component={Home}/>
-                       <Route exact path="/content/" component={Content}/>
+                       <Route exact path="/content/" component={IndexAll}/>
                        <Route exact path="/users/:id/" component={User}/>
                        <Route exact path="/shells/:id/" component={Shell}/>
                        <Route path="/orders/:id/" component={Order}/>

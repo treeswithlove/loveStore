@@ -43,7 +43,7 @@ class UserCreate extends Component {
 
                     <form onSubmit={this.createUser}>
 
-                                    <div>
+                    <div>
                         <label htmlFor="first_name">First Name</label>
                         <input
                             id="first_name"

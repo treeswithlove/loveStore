@@ -27,7 +27,6 @@ class ShellUpdate extends Component {
         e.preventDefault()
         axios.put(`/api/v1/shells/${this.state.currentShell.id}/`, this.state.currentShell)
             .then(() => {
-                // this.setState({ isEditFormDisplayed: false })
                 this.props.toggleEditForm()
                 this.props.refreshShellList()
 

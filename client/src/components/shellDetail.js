@@ -13,19 +13,18 @@ class Shell extends Component {
     }
     //gets the shell
     componentDidMount = () => {
-        //     this.props.getShells()
-        // }
-        // getShells = () => {
         axios.get(`/api/v1/shells/${this.props.match.params.id}/`)
             .then(res => {
                 this.setState({ shell: res.data })
             })
     }
+
     toggleEditForm = () => {
         this.setState((state) => {
             return { isEditFormDisplayed: !state.isEditFormDisplayed }
         })
     }
+
     //updates shell
     updateShell = (e) => {
         e.preventDefault()
@@ -35,6 +34,7 @@ class Shell extends Component {
                 this.setState({ isEditFormDisplayed: false })
             })
     }
+
     //creates clone as placeholder
     handleChange = (e) => {
         const newShell = { ...this.state.shell }
@@ -53,7 +53,7 @@ class Shell extends Component {
     }
 
     render() {
-        if (this.state.redirectShellList){
+        if (this.state.redirectShellList) {
             return (<Redirect to="/shells/" />)
         }
         const url = `/shells/${this.props.id}/`
@@ -111,10 +111,6 @@ class Shell extends Component {
                         : null
 
                 }  <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
-
-
-
-
                 </li>
             </div>
 

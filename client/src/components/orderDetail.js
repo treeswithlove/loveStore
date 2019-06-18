@@ -13,9 +13,6 @@ class Order extends Component {
     }
     //gets the order
     componentDidMount = () => {
-        //     this.props.getOrders()
-        // }
-        // getOrders = () => {
         axios.get(`/api/v1/orders/${this.props.match.params.id}/`)
             .then(res => {
                 this.setState({ order: res.data })
@@ -74,33 +71,6 @@ class Order extends Component {
                                     value={this.state.order.name}
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="image_url">Image URL</label>
-                                <input
-                                    id="image_url"
-                                    name="image_url"
-                                    onChange={this.handleChange}
-                                    value={this.state.order.image_url}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="description">Description</label>
-                                <input
-                                    id="description"
-                                    name="description"
-                                    onChange={this.handleChange}
-                                    value={this.state.order.description}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="price">Price</label>
-                                <input
-                                    id="price"
-                                    name="price"
-                                    onChange={this.handleChange}
-                                    value={this.state.order.price}
-                                />
-                            </div>
                             <input type="submit" value="submit" />
                             <input onClick={this.deleteOrder} type='submit' value='delete' />
 
@@ -109,12 +79,8 @@ class Order extends Component {
 
                 }  <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
 
-
-
-
                 </li>
             </div>
-
         )
     }
 

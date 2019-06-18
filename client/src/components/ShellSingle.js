@@ -14,11 +14,7 @@ class Shell extends Component {
     }
     //gets the shell
     componentDidMount = () => {
-        // axios.get(`/api/v1/shells/${this.props.id}/`)
-        //     .then(res => {
-        //         // console.log(res)
-        //         this.setState({ shell: res.data })
-        //     })
+
     }
 
     toggleEditForm = () => {
@@ -62,8 +58,7 @@ class Shell extends Component {
 
                 }
                 <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
-                </li>
-                <li> <button onClick={this.deleteShell}><h4>Delete</h4></button>
+                <button onClick={this.deleteShell}><h4>Delete</h4></button>
                 </li>
             </div>
 

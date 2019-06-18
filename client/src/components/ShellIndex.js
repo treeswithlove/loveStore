@@ -54,8 +54,8 @@ class ShellIndex extends Component {
 
         return (
             <div>
-                <h1>Shell List</h1>
-                <button onClick={this.toggleCreateForm}>Create New Shell</button>
+                <h1>Product List</h1>
+                <button onClick={this.toggleCreateForm}>Create New Product</button>
                 {
                     this.state.showCreateForm
                         ? <ShellCreate 

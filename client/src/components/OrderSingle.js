@@ -14,11 +14,7 @@ class Order extends Component {
     }
     //gets the order
     componentDidMount = () => {
-        // axios.get(`/api/v1/orders/${this.props.id}/`)
-        //     .then(res => {
-        //         // console.log(res)
-        //         this.setState({ order: res.data })
-        //     })
+
     }
 
     toggleEditForm = () => {
@@ -60,8 +56,7 @@ class Order extends Component {
 
                 }
                 <li> <button onClick={this.toggleEditForm}><h4>Edit</h4></button>
-                </li>
-                <li> <button onClick={this.deleteOrder}><h4>Delete</h4></button>
+                <button onClick={this.deleteOrder}><h4>Delete</h4></button>
                 </li>
             </div>
 

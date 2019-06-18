@@ -29,7 +29,6 @@ class UserUpdate extends Component {
         e.preventDefault()
         axios.put(`/api/v1/users/${this.state.currentUser.id}/`, this.state.currentUser)
             .then(() => {
-                // this.setState({ isEditFormDisplayed: false })
                 this.props.toggleEditForm()
                 this.props.refreshUserList()
 
@@ -77,15 +76,6 @@ class UserUpdate extends Component {
                             name="email"
                             onChange={this.handleChange}
                             value={this.state.currentUser.email}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="price">Price</label>
-                        <input
-                            id="price"
-                            name="price"
-                            onChange={this.handleChange}
-                            value={this.state.currentUser.price}
                         />
                     </div>
                     <div>
