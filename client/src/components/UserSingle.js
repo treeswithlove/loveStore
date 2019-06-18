@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
 import UserUpdate from "./UserUpdate"
 
 //styled components or bootstrap or materialize
@@ -34,7 +33,7 @@ class User extends Component {
 
     render() {
         if (this.state.redirectUserList) {
-            return (<Redirect to="/users/" />)
+            return (<Link to="/content/" />)
         }
 
 

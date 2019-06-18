@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
 import OrderUpdate from "./OrderUpdate"
 
 //styled components or bootstrap or materialize
@@ -34,7 +33,7 @@ class Order extends Component {
 
     render() {
         if (this.state.redirectOrderList) {
-            return (<Redirect to="/orders/" />)
+            return (<Link to="/content/" />)
         }
 
 

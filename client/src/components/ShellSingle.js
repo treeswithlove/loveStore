@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router'
 import ShellUpdate from "./ShellUpdate"
 
 //styled components or bootstrap or materialize
@@ -34,7 +33,7 @@ class Shell extends Component {
 
     render() {
         if (this.state.redirectShellList) {
-            return (<Redirect to="/shells/" />)
+            return (<Link to="/content/" />)
         }
 
 
