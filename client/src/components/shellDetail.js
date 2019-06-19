@@ -79,8 +79,8 @@ class Shell extends Component {
                 <li><img className="shellImage" src={this.state.shell.image_url} alt={this.props.name} /> </li>
                 <li><h4>{this.state.shell.description} </h4> </li>
                 <li><h4>${this.state.shell.price}</h4> </li>
-                <li><h4>${this.state.shell.sku}</h4> </li>
-                <li><h4>${this.state.shell.quantity}</h4> </li>
+                <li><h4>{this.state.shell.sku}</h4> </li>
+                <li><h4>{this.state.shell.quantity}</h4> </li>
 
                 <button onClick={this.orderShell}>Order Item</button>
                 <p><p id="response"> </p>
